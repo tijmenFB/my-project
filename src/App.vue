@@ -1,16 +1,39 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Lars Vue.js App"/>
+    <navigation-bar @open="openPagina"/>
+
+    <lijst v-if="pagina === 'lijst'"/>
+    <reken v-if="pagina === 'reken'"/>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import NavigationBar from "@/components/NavigationBar";
+import lijst from "@/views/lijst";
+import reken from "@/views/reken";
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavigationBar,
+    lijst,
+    reken
+
+  },
+
+  data: () => {
+    return {
+      pagina:''
+
+    }
+  },
+  methods: {
+    openPagina(pagina){
+      this.pagina = pagina
+    }
   }
 }
 </script>
@@ -23,5 +46,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+
+.niet-done{
+  float: left;
+}
+.gedaan{
+  float: right;
 }
 </style>
